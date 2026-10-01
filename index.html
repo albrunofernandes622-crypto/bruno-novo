@@ -1220,6 +1220,27 @@
 
 
   <script src="js/app.js"></script>
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD4VGc5I68aLau5JDkWqH1OAX1J8KatvQU",
+  authDomain: "studio-de-pilates-af34e.firebaseapp.com",
+  projectId: "studio-de-pilates-af34e",
+  storageBucket: "studio-de-pilates-af34e.firebasestorage.app",
+  messagingSenderId: "70323551036",
+  appId: "1:70323551036:web:16c4df950c3483d7d1bc39",
+  measurementId: "G-3MM3VE2GHX"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 </body>
 </html>
 
