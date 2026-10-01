@@ -1,0 +1,1244 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#f4f3f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d12" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Sistema de gestão profissional — Studio de Pilates LOUISE KARLA — Android e iOS">
+<meta name="color-scheme" content="light dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Studio Pilates LOUISE KARLA">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Studio Pilates">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<title>Studio Pilates LOUISE KARLA — Apple-style — v83</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="application-version" content="v65-controle-integrado-equipamentos"><meta name="application-integrity" content="dashboard-equipment-live-history-7-column-comfort">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<div id="iosConfirmBackdrop" aria-hidden="true">
+  <div id="iosConfirmDialog" role="alertdialog" aria-modal="true" aria-labelledby="iosConfirmTitle" aria-describedby="iosConfirmMessage">
+    <div class="ios-confirm-content">
+      <div class="ios-confirm-icon" id="iosConfirmIcon"></div>
+      <h2 class="ios-confirm-title" id="iosConfirmTitle">Confirmar ação</h2>
+      <div class="ios-confirm-message" id="iosConfirmMessage"></div>
+    </div>
+    <div class="ios-confirm-actions">
+      <button type="button" class="btn ios-confirm-cancel" id="iosConfirmCancel">Cancelar</button>
+      <button type="button" class="btn ios-confirm-ok" id="iosConfirmOk">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-logo" id="brandLogo">LK</div>
+    <div>
+      <div class="brand-name" id="brandName">Studio de Pilates<br>LOUISE KARLA</div>
+      <div class="brand-sub">Sistema de Gestão Pro</div>
+    </div>
+  </div>
+
+  <div class="nav-tools">
+    <input id="menuSearch" class="nav-search" placeholder="🔎 Buscar menu..." autocomplete="off" oninput="filterMenus(this.value)">
+    <div id="navEmpty" class="nav-empty">Nenhum menu encontrado.</div>
+  </div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3l8.5 7.5"/><path d="M5.5 9.5V20h13V9.5M9.5 20v-6h5v6"/></svg></span> Painel</button>
+    <button data-page="students"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-3.1 2.3-5 5.5-5s5 1.9 5.5 5"/><path d="M15.5 6.5a3 3 0 0 1 0 5.8M16 14c2.5.4 4 2 4.5 5"/></svg></span> Alunos</button>
+    <button data-page="agenda"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 9.5h16"/></svg></span> Agenda</button>
+    <button data-page="hours"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg></span> Horários</button>
+    <button data-page="occupancy"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V11M12 19V5M19 19v-8"/></svg></span> Ocupação</button>
+    <button data-page="finance"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="M16 12h.01M8 12h.01"/><path d="M12 9.5c-1.3 0-2.2.9-2.2 2s.9 2 2.2 2 2.2.9 2.2 2"/></svg></span> Financeiro</button>
+    <button data-page="billing"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="3.5" width="11" height="17" rx="2"/><path d="M9.5 6.5h5M11.5 17.5h1"/></svg></span> Cobranças <span class="nav-badge" id="navBillingBadge">0</span></button>
+    <button data-page="makeups"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8a8 8 0 0 0-14-2L4 8"/><path d="M4 4v4h4M4 16a8 8 0 0 0 14 2l2-2"/><path d="M20 20v-4h-4"/></svg></span> Reposições</button>
+    <button data-page="birthdays"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14v7H5zM4 12h16"/><path d="M8 9c-1.5 0-2.5-.8-2.5-2S6.5 5 8 5s2.5.8 2.5 2-1 2-2.5 2ZM16 9c-1.5 0-2.5-.8-2.5-2S14.5 5 16 5s2.5.8 2.5 2-1 2-2.5 2ZM12 9V4"/></svg></span> Aniversários <span class="nav-badge" id="navBirthdayBadge">0</span></button>
+    <button data-page="waitlist"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10M7 20h10M8 4c0 4 4 4 4 8s-4 4-4 8M16 4c0 4-4 4-4 8s4 4 4 8"/></svg></span> Lista de Espera <span class="nav-badge" id="navWaitlistBadge">0</span></button>
+    <button data-page="reports"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 3 3 7-8"/><path d="M15 7h4v4"/></svg></span> Relatórios</button>
+    <button data-page="teacher"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><path d="M5 20c.6-4 2.8-6 7-6s6.4 2 7 6"/><path d="M4 11h4M16 11h4"/></svg></span> Painel Professora</button>
+    <button data-page="teachers"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><path d="M5 20c.6-4 2.8-6 7-6s6.4 2 7 6"/><path d="M4 11h4M16 11h4"/></svg></span> Gestão de Professores</button>
+    <button data-page="alerts"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12l-1.5-2v-4a4.5 4.5 0 0 0-9 0v4L6 17Z"/><path d="M10 20h4"/></svg></span> Alertas <span class="nav-badge" id="navAlertsBadge">0</span></button>
+    <button data-page="evolution"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 3 3 7-8"/><path d="M15 7h4v4"/></svg></span> Evolução <span class="nav-badge" id="navEvolutionBadge">0</span></button>
+    <button data-page="equipment"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M8 10c1.3-1 2.7-1 4 0s2.7 1 4 0M12 7v7M8 21l4-7 4 7M5 14l3 1M19 14l-3 1"/></svg></span> Equipamentos <span class="nav-badge" id="navEquipmentBadge">0</span></button>
+    <button data-page="settings"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 13.5a7.8 7.8 0 0 0 0-3l2-1.2-2-3.4-2.2 1a8 8 0 0 0-2.5-1.5L14 3h-4l-.3 2.4a8 8 0 0 0-2.5 1.5L5 5.9l-2 3.4 2 1.2a7.8 7.8 0 0 0 0 3L3 14.7l2 3.4 2.2-1a8 8 0 0 0 2.5 1.5L10 21h4l.3-2.4a8 8 0 0 0 2.5-1.5l2.2 1 2-3.4-2-1.2Z"/></svg></span> Configurações</button>
+  </nav>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="btn icon mobile-menu" onclick="toggleSidebar()">☰</button>
+    <div class="top-title" id="topTitle">Painel</div>
+  </div>
+
+  <div class="top-right">
+    <div class="storage-status" title="Status da sincronização local">
+      <span class="storage-dot" id="storageDot"></span>
+      <span id="storageStatus">Dados protegidos</span>
+    </div>
+    <button class="btn small" onclick="openIOSCommandCenter()" title="Busca rápida (⌘/Ctrl + K)">⌕ Buscar</button>
+    <button class="btn small" onclick="openQuickActions()">⚡ Ações</button>
+    <button class="btn small primary" onclick="openStudentModal()">＋ Aluno</button>
+  </div>
+</header>
+
+<div class="ios-command-backdrop" id="iosCommandBackdrop" aria-hidden="true" onclick="if(event.target===this)closeIOSCommandCenter()">
+  <div class="ios-command" role="dialog" aria-modal="true" aria-labelledby="iosCommandTitle">
+    <div class="ios-command-head"><input id="iosCommandInput" type="search" autocomplete="off" placeholder="Buscar aluno, ação ou tela…" aria-label="Buscar no Studio"><button type="button" onclick="closeIOSCommandCenter()" aria-label="Fechar">×</button></div>
+    <div class="ios-command-list" id="iosCommandList"></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- PAINEL PRINCIPAL (DASHBOARD) -->
+<section class="page active" id="page-dashboard">
+
+  <div class="ios-smart-widgets" id="iosSmartWidgets" aria-label="Resumo inteligente do Studio">
+    <button class="ios-smart-widget" type="button" onclick="iosSmartGo('agenda')"><span class="widget-icon">◷</span><span class="widget-label">Próxima aula</span><span class="widget-value" id="iosWidgetNext">—</span><span class="widget-foot" id="iosWidgetNextFoot">Nenhuma aula encontrada</span></button>
+    <button class="ios-smart-widget" type="button" onclick="iosSmartGo('agenda')"><span class="widget-icon">◉</span><span class="widget-label">Ocupação hoje</span><span class="widget-value" id="iosWidgetOccupancy">—</span><span class="widget-foot" id="iosWidgetOccupancyFoot">Aulas do dia</span></button>
+    <button class="ios-smart-widget" type="button" onclick="iosSmartGo('alerts')"><span class="widget-icon">⌁</span><span class="widget-label">Atenção</span><span class="widget-value" id="iosWidgetAlerts">0</span><span class="widget-foot" id="iosWidgetAlertsFoot">Tudo em ordem</span></button>
+  </div>
+
+  <div class="hero">
+    <div class="hero-title" id="heroGreeting">Studio de Pilates LOUISE KARLA</div>
+    <div class="hero-text" id="heroSub">Gestão centralizada de alunos, agenda, ocupação e financeiro.</div>
+    <div class="device-datetime" aria-live="polite"><span id="deviceDate">—</span><span class="device-time-separator">•</span><span id="deviceTime">—</span><span class="device-sync">Sincronizado com o aparelho</span></div>
+    <div class="hero-actions">
+      <button class="btn" onclick="openStudentModal()">👤 Cadastrar Aluno</button>
+      <button class="btn" onclick="openClassModal()">📅 Agendar Aula</button>
+      <button class="btn" onclick="openFinanceModal()">💰 Lançar Receita/Cobrança</button>
+      <button class="btn whatsapp" onclick="openBatchWhatsAppModal()"><span class="wa-inline"><svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.12 0C5.5 0 .12 5.38.12 12c0 2.11.55 4.17 1.6 5.98L.05 24l6.17-1.62A11.9 11.9 0 0 0 12.12 24h.01c6.62 0 12-5.38 12-12 0-3.2-1.25-6.21-3.61-8.52zM12.13 21.9c-1.87 0-3.7-.5-5.29-1.45l-.38-.23-3.66.96.98-3.56-.25-.39a9.85 9.85 0 1 1 8.6 4.67zm5.42-7.39c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.36.45-.54.15-.18.2-.3.3-.51.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.81.38-.28.3-1.06 1.03-1.06 2.5s1.09 2.9 1.24 3.1c.15.2 2.14 3.27 5.19 4.59.73.31 1.3.5 1.75.64.74.24 1.41.21 1.94.13.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/></svg><span>WhatsApp em Lote</span></span></button>
+      <button class="btn" onclick="goPage('billing')">📲 Cobranças Pendentes</button>
+    </div>
+  </div>
+
+  <div id="managementSummary" class="section"></div>
+
+  <!-- BARRA DE ALERTAS DINÂMICOS -->
+  <div id="dashboardAlerts" style="margin-bottom:18px"></div>
+
+  <!-- V47 — AGENDA OPERACIONAL DE EQUIPAMENTOS -->
+  <div class="card panel section dashboard-equipment-panel control-equipment-panel" id="dashboardEquipmentPanel">
+    <div class="panel-head control-equipment-toolbar">
+      <div class="title-wrap"><span class="control-equipment-live-dot" id="controlEquipmentLiveDot"></span><div><strong>Equipamentos por horário</strong><small id="controlEquipmentLiveText">Integração ao vivo: alunos · dias · horários · aparelhos</small></div></div>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="badge info" id="dashboardEquipmentCount">0 aulas</span><button class="btn small" type="button" onclick="refreshControlEquipment(true)">↻ Atualizar</button></div>
+    </div>
+    <div class="control-equipment-days" id="controlEquipmentDays"></div>
+    <div class="control-equipment-filter">
+      <select id="controlEquipmentFilter" onchange="renderControlEquipment()"><option value="all">Todos os alunos</option><option value="scheduled">Com aula</option><option value="pending">Aparelho pendente</option><option value="done">Aula realizada</option></select>
+      <input id="controlEquipmentSearch" type="search" placeholder="Buscar aluno ou aparelho..." oninput="renderControlEquipment()">
+    </div>
+    <div class="control-equipment-summary" id="controlEquipmentSummary"></div>
+    <div id="dashboardEquipmentSchedule"></div>
+    <div class="control-equipment-refresh-note" id="controlEquipmentRefreshNote">Atualização automática ativa</div>
+  </div>
+  <div class="card panel section">
+    <div class="panel-head"><div><div class="panel-title">Visão Gerencial</div><div class="muted" style="font-size:11px">Indicadores operacionais e financeiros do mês atual.</div></div><button class="btn small" onclick="goPage('reports')">Abrir Rentabilidade</button></div>
+    <div id="dashboardManagement" class="v10-management-grid"></div>
+  </div>
+
+  <div class="grid grid-4">
+    <div class="card kpi">
+      <div class="kpi-label">ALUNOS ATIVOS</div>
+      <div class="kpi-value" id="kpiStudents">0</div>
+      <div class="kpi-foot"><span>👥</span> Cadastros ativos no sistema</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">FATURAMENTO PREVISTO</div>
+      <div class="kpi-value" id="kpiRevenue">R$ 0</div>
+      <div class="kpi-foot"><span>📈</span> Mensalidades projetadas</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">RECEBIDO NO MÊS</div>
+      <div class="kpi-value" id="kpiReceived">R$ 0</div>
+      <div class="kpi-foot" style="color:var(--ok)"><span>✓</span> Pagamentos efetuados</div>
+    </div>
+
+    <div class="card kpi">
+      <div class="kpi-label">TAXA DE OCUPAÇÃO</div>
+      <div class="kpi-value" id="kpiOccupancy">0%</div>
+      <div class="kpi-foot"><span>📊</span> Vagas ativas na grade</div>
+    </div>
+  </div>
+
+  <div class="grid grid-2 section">
+    <div class="card panel">
+      <div class="panel-head">
+        <div class="panel-title">Faturamento vs Recebimento</div>
+        <span class="badge info">Visão Geral</span>
+      </div>
+      <div class="chart-box">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head">
+        <div class="panel-title">Distribuição por Plano</div>
+        <span class="badge gray" id="planCountLabel">0 planos</span>
+      </div>
+      <div class="chart-box">
+        <canvas id="planChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card panel section">
+    <div class="panel-head">
+      <div>
+        <div class="panel-title">Vagas Preenchidas por Horário</div>
+        <div class="muted" style="font-size:11px;margin-top:3px">Distribuição dos alunos ativos durante a semana.</div>
+      </div>
+      <span class="badge info" id="dashboardOccupancyLabel">0%</span>
+    </div>
+    <div class="chart-box large">
+      <canvas id="dashboardOccupancyChart"></canvas>
+    </div>
+  </div>
+
+  <div class="grid grid-2 section">
+    <div class="card panel">
+      <div class="panel-head">
+        <div class="panel-title">Atenções da Agenda</div>
+        <button class="btn small" onclick="goPage('agenda')">Abrir Agenda</button>
+      </div>
+      <div id="dashboardClasses"></div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head">
+        <div class="panel-title">Cobranças Pendentes</div>
+        <button class="btn small" onclick="goPage('billing')">Abrir Central</button>
+      </div>
+      <div id="dashboardBilling"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SEÇÃO ALUNOS -->
+<section class="page" id="page-students">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Alunos</h1>
+      <div class="page-sub">Cadastro centralizado. Dados sincronizados em todo o sistema.</div>
+    </div>
+    <div class="actions">
+      <button class="btn" onclick="exportData()">⬇ Backup JSON</button>
+      <button class="btn primary" onclick="openStudentModal()">＋ Novo Aluno</button>
+    </div>
+  </div>
+
+  <div class="card panel">
+    <div class="form-grid" style="margin-bottom:15px">
+      <div class="field">
+        <label>Buscar Aluno</label>
+        <input id="studentSearch" placeholder="Nome, WhatsApp ou Plano..." oninput="renderStudents()">
+      </div>
+      <div class="field">
+        <label>Filtrar por Status</label>
+        <select id="studentStatusFilter" onchange="renderStudents()">
+          <option value="">Todos</option>
+          <option>Ativo</option>
+          <option>Inativo</option>
+          <option>Trancado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Plano</th>
+            <th>Horário / Dias</th>
+            <th>Professor</th>
+            <th>Mensalidade</th>
+            <th>Status</th>
+                <th>Ações Rápidas</th>
+          </tr>
+        </thead>
+        <tbody id="studentsTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- V41 — CENTRAL DE EVOLUÇÃO -->
+<section class="page" id="page-evolution">
+  <div class="page-head"><div><h1 class="page-title">Evolução do Paciente</h1><div class="page-sub">Registro simples e objetivo do progresso, observações e próximos passos do aluno.</div></div><div class="actions"><button class="btn primary" onclick="openEvolutionModal()">＋ Nova Evolução</button></div></div>
+  <div class="card panel">
+    <div class="form-grid" style="margin-bottom:15px">
+      <div class="field"><label>Buscar Paciente</label><input id="evolutionSearch" placeholder="Nome do paciente..." oninput="renderEvolution()"></div>
+      <div class="field"><label>Paciente selecionado</label><select id="evolutionStudentSelect" onchange="renderEvolution()"><option value="">Todos os pacientes</option></select></div>
+    </div>
+    <div id="evolutionKpis" class="evolution-kpis-v40"></div><div id="evolutionPatientGrid"></div>
+  </div>
+</section>
+<!-- DEMAIS PÁGINAS (ESTRUTURA PRESERVADA COMPATÍVEL COM V5) -->
+<section class="page" id="page-agenda">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Agenda</h1>
+      <div class="page-sub">Visualização e controle de aulas.</div>
+    </div>
+    <button class="btn primary" onclick="openClassModal()">＋ Agendar Aula</button>
+  </div>
+
+  <div class="card panel">
+    <div class="calendar-head">
+      <button class="btn small" onclick="changeMonth(-1)">← Anterior</button>
+      <strong id="calendarMonth"></strong>
+      <button class="btn small" onclick="changeMonth(1)">Próximo →</button>
+    </div>
+    <div class="calendar-grid" id="calendar"></div>
+  </div>
+
+  <div class="card panel section">
+    <div class="panel-head">
+      <div class="panel-title">Aulas Cadastradas</div>
+      <span class="badge gray" id="classCount">0 aulas</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Aluno</th>
+            <th>Professor</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="classesTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-hours">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Horários</h1>
+      <div class="page-sub">Grade horária e disponibilidade de horários.</div>
+    </div>
+    <button class="btn primary" onclick="goSettings('hours')">⚙ Editar Horários</button>
+  </div>
+  <div class="card panel"><div id="hoursGrid"></div></div>
+</section>
+
+<section class="page" id="page-occupancy">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Ocupação</h1>
+      <div class="page-sub">Gestão e análise de vagas na grade.</div>
+    </div>
+  </div>
+  <div class="grid grid-4">
+    <div class="card kpi"><div class="kpi-label">CAPACIDADE TOTAL</div><div class="kpi-value" id="occCapacity">0</div></div>
+    <div class="card kpi"><div class="kpi-label">VAGAS OCUPADAS</div><div class="kpi-value" id="occOccupied">0</div></div>
+    <div class="card kpi"><div class="kpi-label">VAGAS LIVRES</div><div class="kpi-value" id="occFree">0</div></div>
+    <div class="card kpi"><div class="kpi-label">OCUPAÇÃO MÉDIA</div><div class="kpi-value" id="occPercent">0%</div></div>
+  </div>
+  <div class="card panel section">
+    <div class="panel-head">
+      <div class="panel-title">Ocupação Semanal da Grade</div>
+      <span class="badge info" id="occupancyChartLabel">0%</span>
+    </div>
+    <div class="chart-box large"><canvas id="occupancyBarChart"></canvas></div>
+  </div>
+  <div class="card panel section"><div class="occupancy-grid" id="occupancyGrid"></div></div>
+  <div class="card panel section">
+    <div class="panel-head">
+      <div><div class="panel-title">Alunos por Plano, Dia e Horário</div>
+      <div class="muted" style="font-size:11px">Visualização das turmas e dos alunos distribuídos na grade.</div></div>
+      <span class="badge info">Mapa de Turmas</span>
+    </div>
+    <div id="occupancyDayFilters" style="display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 2px">
+      <button class="btn small primary" type="button" onclick="filterOccupancyDay('all')">Todos</button>
+      <button class="btn small" type="button" onclick="filterOccupancyDay('1')">Segunda</button>
+      <button class="btn small" type="button" onclick="filterOccupancyDay('2')">Terça</button>
+      <button class="btn small" type="button" onclick="filterOccupancyDay('3')">Quarta</button>
+      <button class="btn small" type="button" onclick="filterOccupancyDay('4')">Quinta</button>
+      <button class="btn small" type="button" onclick="filterOccupancyDay('5')">Sexta</button>
+      <button class="btn small" type="button" onclick="filterOccupancyDay('6')">Sábado</button>
+    </div>
+    <div id="occupancyPlanMatrix"></div>
+  </div>
+</section>
+
+<section class="page" id="page-finance">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Financeiro</h1>
+      <div class="page-sub">Controle de receitas, mensalidades e pendências.</div>
+    </div>
+    <div class="actions">
+      <button class="btn" onclick="generateCharges()">🔄 Gerar Mensalidades</button>
+      <button class="btn" onclick="openExpenseModal()">＋ Nova Despesa</button>
+      <button class="btn primary" onclick="openFinanceModal()">＋ Novo Lançamento</button>
+    </div>
+  </div>
+  <div class="finance-period-toolbar">
+    <button class="btn small" type="button" onclick="changeFinanceMonth(-1)">‹ Mês anterior</button>
+    <strong id="financeMonthLabel">${monthLabel(currentMonth)}</strong>
+    <button class="btn small" type="button" onclick="changeFinanceMonth(1)">Próximo mês ›</button>
+    <button class="btn small" type="button" onclick="goFinanceCurrentMonth()">Hoje</button>
+  </div>
+  <div class="grid grid-4">
+    <div class="card kpi"><div class="kpi-label">PREVISTO</div><div class="kpi-value" id="financeExpected">R$ 0</div></div>
+    <div class="card kpi"><div class="kpi-label">RECEBIDO</div><div class="kpi-value" id="financeReceived">R$ 0</div></div>
+    <div class="card kpi"><div class="kpi-label">PENDENTE</div><div class="kpi-value" id="financePending">R$ 0</div></div>
+    <div class="card kpi"><div class="kpi-label">TAXA DE RECEBIMENTO</div><div class="kpi-value" id="financeRate">0%</div></div>
+    <div class="card kpi"><div class="kpi-label">DESPESAS</div><div class="kpi-value" id="financeExpenses">R$ 0</div></div>
+    <div class="card kpi"><div class="kpi-label">RESULTADO</div><div class="kpi-value" id="financeNet">R$ 0</div></div>
+  </div>
+  <div class="card panel section">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Aluno</th>
+            <th>Vencimento</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Pagamento</th>
+            <th>Ações Rápidas</th>
+          </tr>
+        </thead>
+        <tbody id="financeTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-billing">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Cobranças &nbsp;<span class="wa-label"><svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.12 0C5.5 0 .12 5.38.12 12c0 2.11.55 4.17 1.6 5.98L.05 24l6.17-1.62A11.9 11.9 0 0 0 12.12 24h.01c6.62 0 12-5.38 12-12 0-3.2-1.25-6.21-3.61-8.52zM12.13 21.9c-1.87 0-3.7-.5-5.29-1.45l-.38-.23-3.66.96.98-3.56-.25-.39a9.85 9.85 0 1 1 8.6 4.67zm5.42-7.39c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.36.45-.54.15-.18.2-.3.3-.51.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.81.38-.28.3-1.06 1.03-1.06 2.5s1.09 2.9 1.24 3.1c.15.2 2.14 3.27 5.19 4.59.73.31 1.3.5 1.75.64.74.24 1.41.21 1.94.13.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/></svg> WhatsApp</span></h1>
+      <div class="page-sub">Envio de cobranças, lembretes e chave PIX.</div>
+    </div>
+    <div class="actions">
+      <button class="btn whatsapp" onclick="openBatchWhatsAppModal()"><span class="wa-inline"><svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.12 0C5.5 0 .12 5.38.12 12c0 2.11.55 4.17 1.6 5.98L.05 24l6.17-1.62A11.9 11.9 0 0 0 12.12 24h.01c6.62 0 12-5.38 12-12 0-3.2-1.25-6.21-3.61-8.52zM12.13 21.9c-1.87 0-3.7-.5-5.29-1.45l-.38-.23-3.66.96.98-3.56-.25-.39a9.85 9.85 0 1 1 8.6 4.67zm5.42-7.39c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.36.45-.54.15-.18.2-.3.3-.51.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.81.38-.28.3-1.06 1.03-1.06 2.5s1.09 2.9 1.24 3.1c.15.2 2.14 3.27 5.19 4.59.73.31 1.3.5 1.75.64.74.24 1.41.21 1.94.13.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/></svg><span>Cobrar Todos em Lote</span></span></button>
+      <button class="btn primary" onclick="generateCharges()">🔄 Atualizar Cobranças</button>
+    </div>
+  </div>
+
+  <div class="billing-status-strip" id="billingStatusStrip"></div>
+  <div class="billing-filter-bar"><button class="btn small active" data-billing-filter="all" onclick="setBillingFilter('all')">Todas</button><button class="btn small" data-billing-filter="paid" onclick="setBillingFilter('paid')">🟢 Em dia</button><button class="btn small" data-billing-filter="due" onclick="setBillingFilter('due')">🟡 Vencendo</button><button class="btn small" data-billing-filter="overdue" onclick="setBillingFilter('overdue')">🔴 Atrasado</button></div>
+  <div class="grid grid-3">
+    <div class="card kpi"><div class="kpi-label">COBRANÇAS PENDENTES</div><div class="kpi-value" id="billingPending">0</div></div>
+    <div class="card kpi"><div class="kpi-label">VALOR TOTAL PENDENTE</div><div class="kpi-value" id="billingValue">R$ 0</div></div>
+    <div class="card kpi"><div class="kpi-label">WHATSAPP</div><div class="kpi-value" style="color:var(--wa)">Ativo</div></div>
+  </div>
+
+  <div class="card panel section">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Vencimento</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Ações WhatsApp</th>
+          </tr>
+        </thead>
+        <tbody id="billingTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-makeups">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Reposições</h1>
+      <div class="page-sub">Controle de ausências e aulas de reposição.</div>
+    </div>
+    <button class="btn primary" onclick="openMakeupModal()">＋ Agendar Reposição</button>
+  </div>
+  <div class="card panel">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Aluno</th><th>Data Original</th><th>Nova Data</th><th>Status</th><th>Ações</th></tr>
+        </thead>
+        <tbody id="makeupsTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-birthdays">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Aniversários</h1>
+      <div class="page-sub">Parabéns aos alunos e felicitações via WhatsApp.</div>
+    </div>
+  </div>
+  <div class="card panel"><div id="birthdaysList"></div></div>
+</section>
+
+<section class="page" id="page-waitlist">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Lista de Espera</h1>
+      <div class="page-sub">Interessados aguardando vaga na grade.</div>
+    </div>
+    <button class="btn primary" onclick="openWaitModal()">＋ Adicionar à Lista</button>
+  </div>
+  <div class="card panel">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Nome</th><th>WhatsApp</th><th>Plano</th><th>Horário Desejado</th><th>Status</th><th>Ações</th></tr>
+        </thead>
+        <tbody id="waitTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-reports">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Relatórios & Rentabilidade</h1>
+      <div class="page-sub">Visão gerencial de receita por aluno, aulas estimadas, repasse das professoras e margem.</div>
+    </div>
+    <div class="actions">
+      <button class="btn" type="button" onclick="exportReportsCSV()">⬇ Exportar CSV</button>
+      <button class="btn primary" type="button" onclick="renderReports()">↻ Atualizar</button>
+    </div>
+  </div>
+
+  <div class="card panel">
+    <div class="panel-head">
+      <div>
+        <div class="panel-title">Filtros do relatório</div>
+        <div class="report-table-note">O cálculo mensal considera a frequência do plano × 4,33 semanas. O repasse usa o percentual configurado por professora.</div>
+      </div>
+      <span class="report-filter-status" id="reportFilterStatus">Todos os alunos ativos</span>
+    </div>
+    <div class="report-toolbar">
+      <div class="field compact">
+        <label>Professor</label>
+        <select id="reportTeacherFilter" onchange="renderReports()">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="field compact">
+        <label>Status do aluno</label>
+        <select id="reportStatusFilter" onchange="renderReports()">
+          <option value="Ativo">Ativos</option>
+          <option value="Todos">Todos</option>
+          <option value="Inativo">Inativos</option>
+          <option value="Trancado">Trancados</option>
+        </select>
+      </div>
+      <div class="field compact">
+        <label>Período de referência</label>
+        <input id="reportMonthFilter" type="month" onchange="renderReports()">
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-4 section">
+    <div class="card kpi report-kpi-accent report-kpi-money">
+      <div class="kpi-label">RECEITA MENSAL ESTIMADA</div>
+      <div class="kpi-value" id="reportRevenue">R$ 0,00</div>
+      <div class="kpi-foot">Mensalidades dos alunos filtrados</div>
+    </div>
+    <div class="card kpi report-kpi-accent report-kpi-money">
+      <div class="kpi-label">REPASSE PROFESSORAS</div>
+      <div class="kpi-value" id="reportTeacherCost">R$ 0,00</div>
+      <div class="kpi-foot">Custo estimado por aluno/aula</div>
+    </div>
+    <div class="card kpi report-kpi-accent report-kpi-money">
+      <div class="kpi-label">MARGEM APÓS REPASSE</div>
+      <div class="kpi-value" id="reportMargin">R$ 0,00</div>
+      <div class="kpi-foot" id="reportMarginPct">0,0% da receita</div>
+    </div>
+    <div class="card kpi report-kpi-accent">
+      <div class="kpi-label">AULAS / MÊS ESTIMADAS</div>
+      <div class="kpi-value" id="reportClasses">0</div>
+      <div class="kpi-foot">Base de 4,33 semanas</div>
+    </div>
+  </div>
+
+  <div class="report-section">
+    <div class="card panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">Quanto cada aluno representa por aula e por hora</div>
+          <div class="report-table-note">Valor econômico da mensalidade distribuído pela frequência contratada.</div>
+        </div>
+      </div>
+      <div class="report-scroll">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Aluno</th><th>Plano</th><th>Professor</th><th>Freq.</th>
+              <th class="report-number">Mensalidade</th>
+              <th class="report-number">Aulas/mês</th>
+              <th class="report-number">R$/aula</th>
+              <th class="report-number">R$/hora</th>
+              <th class="report-number">Repasse/aula</th>
+              <th class="report-number">Margem/aula</th>
+            </tr>
+          </thead>
+          <tbody id="reportStudentsTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-2 report-section">
+    <div class="card panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">Repasse por professora</div>
+          <div class="report-table-note">Consolidação dos alunos vinculados a cada professora.</div>
+        </div>
+      </div>
+      <div class="report-scroll">
+        <table class="report-table" style="min-width:620px">
+          <thead>
+            <tr>
+              <th>Professora</th><th class="report-number">Alunos</th>
+              <th class="report-number">Aulas/mês</th><th class="report-number">Receita</th>
+              <th class="report-number">Repasse</th><th class="report-number">Margem</th>
+            </tr>
+          </thead>
+          <tbody id="reportTeachersTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head"><div class="panel-title">Resumo financeiro</div></div>
+      <div id="reportSummary"></div>
+      <div class="report-formula" style="margin-top:12px">
+        <strong>Fórmulas:</strong><br>
+        Aulas/mês = frequência semanal × 4,33<br>
+        Valor/aula = mensalidade ÷ aulas/mês<br>
+        Repasse mensal = receita mensal × percentual de repasse<br>
+        Margem = receita − repasse
+      </div>
+    </div>
+  </div>
+
+  <div class="report-section">
+    <div class="card panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">Configuração de repasse</div>
+          <div class="report-table-note">Defina quanto cada professora recebe por aluno em cada aula. O sistema não assume nenhum valor automaticamente.</div>
+        </div>
+      </div>
+      <div id="reportTeacherConfig"></div>
+    </div>
+  </div>
+
+  <!-- Compatibilidade com IDs antigos -->
+  <div style="display:none">
+    <span id="reportTicket">R$ 0</span>
+    <span id="reportDefault">0%</span>
+    <span id="reportInactive">0</span>
+    <span id="reportPaused">0</span>
+    <canvas id="reportPlanChart"></canvas>
+  </div>
+</section>
+
+<!-- CONFIGURAÇÕES ATUALIZADAS COM PIX E MAIS OPÇÕES DE MENSAGEM -->
+<section class="page" id="page-teachers">
+  <div class="page-head"><div><h1 class="page-title">Gestão de Professores</h1><div class="page-sub">Professores, aulas ministradas, alunos, repasse e fechamento mensal.</div></div><div class="actions"><button class="btn primary" onclick="openTeacherManagementModal()">＋ Professor</button><button class="btn" onclick="renderTeacherManagement()">↻ Atualizar</button></div></div>
+  <div class="teacher-month-toolbar"><button class="btn small" onclick="changeTeacherMonth(-1)">‹</button><strong id="teacherMonthLabel">—</strong><button class="btn small" onclick="changeTeacherMonth(1)">›</button><button class="btn small" onclick="goTeacherCurrentMonth()">Hoje</button><button class="btn small primary" onclick="closeTeacherMonth()">Fechar mês</button></div>
+  <div class="module-kpis" id="teacherManagementKpis"></div>
+  <div class="card panel section"><div class="panel-head"><div class="panel-title">Fechamento por professor</div><div id="teacherClosingStatus" class="muted"></div></div><div class="table-wrap"><table><thead><tr><th>Professor</th><th>Ministradas</th><th>Alunos</th><th>Valor/aula</th><th>Repasse %</th><th>Total a receber</th><th>Canceladas</th><th>Experimentais</th><th>Ações</th></tr></thead><tbody id="teacherManagementTable"></tbody></table></div></div>
+  <div class="grid grid-2 section"><div class="card panel"><div class="panel-title">Detalhamento</div><div id="teacherManagementDetail"><div class="empty">Selecione um professor.</div></div></div><div class="card panel"><div class="panel-title">Configuração do repasse</div><div class="teacher-rule-grid"><div><span>Percentual</span><strong id="teacherDefaultRateLabel">0%</strong></div><div><span>Fixo opcional</span><strong>Somado ao fechamento</strong></div><div><span>Fechamento</span><strong>Mensal</strong></div></div></div></div>
+</section>
+<section class="page" id="page-alerts">
+  <div class="page-head"><div><h1 class="page-title">Central de Alertas</h1><div class="page-sub">Pendências financeiras, operacionais e de acompanhamento dos alunos.</div></div><div class="actions"><button class="btn" onclick="renderAlertsCenter()">↻ Atualizar</button><button class="btn small" onclick="dismissAllAlerts()">Limpar visualização</button></div></div>
+  <div class="module-kpis" id="alertsKpis"></div><div class="alerts-center-grid" id="alertsCenterGrid"></div>
+</section>
+<section class="page" id="page-teacher">
+  <div class="page-head">
+    <div><h1 class="page-title">Painel da Professora</h1><div class="page-sub">Visão operacional simplificada das aulas e alunos.</div></div>
+    <div class="actions"><select id="teacherPanelFilter" onchange="renderTeacherPanel()" style="min-width:210px"><option value="">Todas as professoras</option></select></div>
+  </div>
+  <div class="module-kpis" id="teacherPanelKpis"></div>
+  <div class="grid grid-2 section">
+    <div class="card panel"><div class="panel-head"><div class="panel-title">Aulas de Hoje</div><button class="btn small" onclick="goPage('agenda')">Agenda</button></div><div id="teacherTodayClasses"></div></div>
+    <div class="card panel"><div class="panel-head"><div class="panel-title">Alunos Ativos</div><button class="btn small" onclick="goPage('students')">Alunos</button></div><div id="teacherStudents"></div></div>
+  </div>
+</section>
+
+<section class="page" id="page-equipment">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Central de Equipamentos</h1>
+      <div class="page-sub">Gestão dos aparelhos e rodízio inteligente por dia, horário e aluno.</div>
+    </div>
+    <div class="actions">
+      <button class="btn" onclick="renderEquipment()">↻ Atualizar</button>
+      <button class="btn primary" onclick="openEquipmentModal()">＋ Novo aparelho</button>
+    </div>
+  </div>
+
+  <div class="module-kpis equipment-kpis" id="equipmentKpis"></div>
+
+  <section class="equipment-rotation-shell section">
+    <div class="card panel equipment-rotation-panel">
+      <div class="panel-head equipment-rotation-head">
+        <div>
+          <div class="panel-title">Rodízio de Pilates</div>
+          <div class="muted" style="font-size:11px">Controle visual das aulas: dia, horário, aluno e próximo aparelho em um único fluxo.</div>
+        </div>
+        <span class="badge info">Inteligente</span>
+      </div>
+      <div id="equipmentRotationSummary"></div>
+      <div class="rotation-center-toolbar">
+        <div class="rotation-center-date"><label for="equipmentRotationDate">Semana de referência</label><input id="equipmentRotationDate" type="date" onchange="renderEquipmentRotationCenter()"></div>
+        <button class="btn small" type="button" onclick="shiftEquipmentRotationWeek(-1)">‹ Anterior</button>
+        <button class="btn small" type="button" onclick="document.getElementById('equipmentRotationDate').value=todayISO();renderEquipmentRotationCenter()">Hoje</button>
+        <button class="btn small" type="button" onclick="shiftEquipmentRotationWeek(1)">Próxima ›</button>
+        <div class="rotation-center-filter"><label for="equipmentRotationFilter">Filtro</label><select id="equipmentRotationFilter" onchange="renderEquipmentRotationCenter()"><option value="all">Todos</option><option value="scheduled">Com aula</option><option value="pending">Pendentes</option></select></div>
+        <div class="rotation-center-search"><label for="equipmentRotationSearch">Busca rápida</label><input id="equipmentRotationSearch" type="search" placeholder="Buscar aluno..." oninput="renderEquipmentRotationCenter()"></div>
+      </div>
+      <div class="rotation-control-area" id="equipmentRotationControl"></div>
+    </div>
+  </section>
+
+  <section class="card panel section equipment-inventory-panel">
+    <div class="panel-head">
+      <div>
+        <div class="panel-title">Aparelhos</div>
+        <div class="muted" style="font-size:11px">Cadastro rápido dos aparelhos usados no rodízio.</div>
+      </div>
+      <button class="btn small primary" type="button" onclick="openEquipmentModal()">＋ Novo</button>
+    </div>
+    <div id="equipmentVisualGrid" class="equipment-inventory-grid"></div>
+    <div style="display:none"><table><tbody id="equipmentTable"></tbody></table></div>
+  </section>
+</section>
+
+<section class="page" id="page-settings">
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Configurações</h1>
+      <div class="page-sub">Ajustes do Studio</div>
+    </div>
+
+  </div>
+
+  <div class="settings-nav">
+    <button class="active" data-settings="general" onclick="goSettings('general')">Empresa & PIX</button>
+    <button data-settings="plans" onclick="goSettings('plans')">Planos</button>
+    <button data-settings="hours" onclick="goSettings('hours')">Horários</button>
+    <button data-settings="teachers" onclick="goSettings('teachers')">Professores</button>
+    <button data-settings="payments" onclick="goSettings('payments')">Pagamentos</button>
+    <button data-settings="messages" onclick="goSettings('messages')"><span class="wa-label"><svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.12 0C5.5 0 .12 5.38.12 12c0 2.11.55 4.17 1.6 5.98L.05 24l6.17-1.62A11.9 11.9 0 0 0 12.12 24h.01c6.62 0 12-5.38 12-12 0-3.2-1.25-6.21-3.61-8.52zM12.13 21.9c-1.87 0-3.7-.5-5.29-1.45l-.38-.23-3.66.96.98-3.56-.25-.39a9.85 9.85 0 1 1 8.6 4.67zm5.42-7.39c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.36.45-.54.15-.18.2-.3.3-.51.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.81.38-.28.3-1.06 1.03-1.06 2.5s1.09 2.9 1.24 3.1c.15.2 2.14 3.27 5.19 4.59.73.31 1.3.5 1.75.64.74.24 1.41.21 1.94.13.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/></svg> Mensagens WhatsApp</span></button>
+    <button data-settings="appearance" onclick="goSettings('appearance')">Aparência & Tema</button>
+    <button data-settings="backup" onclick="goSettings('backup')">Segurança & Banco</button>
+  </div>
+
+  <!-- EMPRESA & PIX -->
+  <div class="settings-section active" id="settings-general">
+    <div class="card panel">
+      <div class="section-title">Studio</div>
+      <div class="form-grid">
+        <div class="field"><label>Nome do Studio</label><input id="setStudioName"></div>
+        <div class="field"><label>Responsável Técnico / Proprietário</label><input id="setOwner"></div>
+        <div class="field"><label><span class="wa-label"><svg class="wa-svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.12 0C5.5 0 .12 5.38.12 12c0 2.11.55 4.17 1.6 5.98L.05 24l6.17-1.62A11.9 11.9 0 0 0 12.12 24h.01c6.62 0 12-5.38 12-12 0-3.2-1.25-6.21-3.61-8.52zM12.13 21.9c-1.87 0-3.7-.5-5.29-1.45l-.38-.23-3.66.96.98-3.56-.25-.39a9.85 9.85 0 1 1 8.6 4.67zm5.42-7.39c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.36.45-.54.15-.18.2-.3.3-.51.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.81.38-.28.3-1.06 1.03-1.06 2.5s1.09 2.9 1.24 3.1c.15.2 2.14 3.27 5.19 4.59.73.31 1.3.5 1.75.64.74.24 1.41.21 1.94.13.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/></svg> WhatsApp do Studio</span></label><input id="setWhatsapp" placeholder="(81) 99999-9999"></div>
+        <div class="field"><label>Instagram</label><input id="setInstagram" placeholder="@studio.pilates"></div>
+        <div class="field"><label>E-mail de Contato</label><input id="setEmail"></div>
+        <div class="field"><label>Endereço Completo</label><input id="setAddress"></div>
+        <div class="field"><label>Capacidade Máxima por Aluno/Turma</label><input id="setCapacity" type="number" min="1"></div>
+        <div class="field"><label>Duração da Aula (Minutos)</label><input id="setDuration" type="number" min="15"></div>
+      </div>
+
+      <div class="section-title" style="margin-top:20px">PIX</div>
+      <div class="form-grid">
+        <div class="field"><label>Tipo de Chave PIX</label>
+          <select id="setPixType">
+            <option value="CPF/CNPJ">CPF / CNPJ</option>
+            <option value="Celular">Celular</option>
+            <option value="E-mail">E-mail</option>
+            <option value="Chave Aleatória">Chave Aleatória</option>
+          </select>
+        </div>
+        <div class="field"><label>Chave PIX (Para Copia e Cola nas mensagens)</label><input id="setPixKey" placeholder="Ex: 000.000.000-00 ou pix@studio.com"></div>
+        <div class="field full"><label>Nome do Beneficiário PIX</label><input id="setPixName" placeholder="Ex: Louise Karla Studio de Pilates LTDA"></div>
+      </div>
+
+      <div class="section" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+        <div>
+          <div class="section-title">Logo</div>
+          <div class="logo-preview" id="logoPreview">Sem logo</div>
+        </div>
+        <div style="flex:1;min-width:240px">
+          <div class="field">
+            <label>Upload de Logotipo</label>
+            <input type="file" id="logoInput" accept="image/*" onchange="uploadLogo(event)">
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <button class="btn danger small icon ios-delete-button" type="button" title="Remover logo" aria-label="Remover logo" onclick="removeLogo()">${trashIcon(16)}</button>
+          </div>
+          <p class="muted" style="font-size:12px">Logotipo salvo diretamente no banco local do navegador.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <button class="btn primary" onclick="saveGeneralSettings()">✓ Salvar Dados do Studio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESSAGES -->
+  <div class="settings-section" id="settings-messages">
+    <div class="card panel">
+      <div class="section-title">Mensagens WhatsApp</div>
+      <p class="muted" style="font-size:12px">Utilize as tags: <code>{nome}</code>, <code>{valor}</code>, <code>{vencimento}</code>, <code>{plano}</code>, <code>{horario}</code>, <code>{studio}</code>, <code>{pix}</code>, <code>{pix_nome}</code>.</p>
+
+      <div class="field"><label>Mensagem de Cobrança / Mensalidade</label><textarea id="msgBilling"></textarea></div>
+      <div class="field" style="margin-top:12px"><label>Mensagem de Lembrete Amigável (Vencendo Hoje / Amanhã)</label><textarea id="msgReminder"></textarea></div>
+      <div class="field" style="margin-top:12px"><label>Mensagem de Boas-Vindas (Novo Aluno)</label><textarea id="msgWelcome"></textarea></div>
+      <div class="field" style="margin-top:12px"><label>Mensagem de Aniversário</label><textarea id="msgBirthday"></textarea></div>
+      <div class="field" style="margin-top:12px"><label>Mensagem de Confirmação de Aula</label><textarea id="msgClass"></textarea></div>
+
+      <div class="section" style="margin-top:20px">
+        <div class="section-title">5 novos templates de mensagem</div>
+        <p class="muted" style="font-size:12px">Escolha um formato pronto e aplique ao campo correspondente. Você pode editar o texto antes de salvar.</p>
+        <div class="grid grid-2" style="margin-top:10px">
+          <div class="card panel" style="box-shadow:none">
+            <strong>01 · Cobrança Profissional</strong>
+            <p class="muted" style="font-size:11px">Formato formal, organizado e direto.</p>
+            <button class="btn small" type="button" onclick="applyMessageTemplate('billing','profissional')">Aplicar</button>
+          </div>
+          <div class="card panel" style="box-shadow:none">
+            <strong>02 · Cobrança Humanizada</strong>
+            <p class="muted" style="font-size:11px">Tom cordial, próximo e acolhedor.</p>
+            <button class="btn small" type="button" onclick="applyMessageTemplate('billing','humanizada')">Aplicar</button>
+          </div>
+          <div class="card panel" style="box-shadow:none">
+            <strong>03 · Lembrete Express</strong>
+            <p class="muted" style="font-size:11px">Mensagem curta para envio rápido.</p>
+            <button class="btn small" type="button" onclick="applyMessageTemplate('reminder','express')">Aplicar</button>
+          </div>
+          <div class="card panel" style="box-shadow:none">
+            <strong>04 · Boas-vindas Premium</strong>
+            <p class="muted" style="font-size:11px">Apresentação elegante para novos alunos.</p>
+            <button class="btn small" type="button" onclick="applyMessageTemplate('welcome','premium')">Aplicar</button>
+          </div>
+          <div class="card panel" style="box-shadow:none">
+            <strong>05 · Confirmação Objetiva</strong>
+            <p class="muted" style="font-size:11px">Confirmação enxuta com as informações essenciais.</p>
+            <button class="btn small" type="button" onclick="applyMessageTemplate('class','objetiva')">Aplicar</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <button class="btn primary" onclick="saveMessages()">✓ Salvar Templates de Mensagem</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS ABA DE CONFIGURAÇÕES -->
+  <div class="settings-section" id="settings-plans">
+    <div class="card panel">
+      <div class="panel-head"><div class="panel-title">Planos do Studio</div><button class="btn primary small" onclick="addPlan()">＋ Novo Plano</button></div>
+      <div id="plansSettings"></div>
+    </div>
+  </div>
+
+  <div class="settings-section" id="settings-hours">
+    <div class="card panel">
+      <div class="panel-head"><div class="panel-title">Grade de Horários</div><button class="btn primary small" onclick="addHour()">＋ Novo Horário</button></div>
+      <div id="hoursSettings"></div>
+    </div>
+  </div>
+
+  <div class="settings-section" id="settings-teachers">
+    <div class="card panel">
+      <div class="panel-head"><div class="panel-title">Professores e Instrutores</div><button class="btn primary small" onclick="addTeacher()">＋ Novo Professor</button></div>
+      <div id="teachersSettings"></div>
+    </div>
+  </div>
+
+  <div class="settings-section" id="settings-payments">
+    <div class="card panel">
+      <div class="panel-head"><div class="panel-title">Formas de Recebimento</div><button class="btn primary small" onclick="addPayment()">＋ Nova Forma</button></div>
+      <div id="paymentsSettings"></div>
+    </div>
+  </div>
+
+  <div class="settings-section" id="settings-appearance">
+    <div class="card panel" style="margin-bottom:15px">
+      <div class="section-title">Painel</div>
+      <div class="muted" style="font-size:11px;margin-bottom:10px">Escolha uma imagem do aparelho (PNG, JPG, WEBP ou outro formato de imagem) diretamente do dispositivo. Não é necessário colar link.</div>
+      <div class="dashboard-upload">
+        <div class="dashboard-upload-preview" id="dashboardHeroPreview">Sem imagem</div>
+        <div style="flex:1;min-width:220px">
+          <input type="file" id="dashboardHeroImageInput" accept="image/png,image/jpeg,image/webp,image/gif,image/*" onchange="uploadDashboardHero(event)">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <button class="btn danger small icon ios-delete-button" type="button" title="Remover imagem" aria-label="Remover imagem" onclick="removeDashboardHeroImage()">${trashIcon(16)}</button>
+          </div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label>Texto da saudação</label>
+        <input id="dashboardGreetingText" placeholder="Ex.: Boa tarde, Louise Karla!">
+      </div>
+      <div class="ios-settings-controls" style="margin-top:16px">
+        <div class="ios-control-card">
+          <div class="ios-control-head"><div><strong>Opacidade do fundo branco</strong><div class="muted">Ajuste a transparência dos cartões e superfícies claras.</div></div><output id="backgroundOpacityValue">66%</output></div>
+          <input id="backgroundOpacityRange" class="ios-range" type="range" min="0" max="100" step="1" value="66" oninput="setBackgroundOpacity(this.value)">
+        </div>
+        <div class="ios-control-card">
+          <div class="ios-control-head"><div><strong>Opacidade do menu principal</strong><div class="muted">Controla a transparência do menu lateral principal no estilo Liquid Glass.</div></div><output id="menuOpacityValue">72%</output></div>
+          <input id="menuOpacityRange" class="ios-range" type="range" min="0" max="100" step="1" value="72" oninput="setMenuOpacity(this.value)">
+        </div>
+        <div class="ios-control-card">
+          <div class="ios-control-head"><div><strong>Opacidade do menu inferior</strong><div class="muted">Controla a transparência da barra de navegação inferior no celular.</div></div><output id="bottomNavOpacityValue">72%</output></div>
+          <input id="bottomNavOpacityRange" class="ios-range" type="range" min="0" max="100" step="1" value="72" oninput="setBottomNavOpacity(this.value)">
+        </div>
+        <div class="ios-control-card">
+          <div class="ios-control-head"><div><strong>Largura das tabelas</strong><div class="muted">Ajuste quanto conteúdo cabe antes da rolagem horizontal.</div></div><output id="tableWidthValue">720 px</output></div>
+          <input id="tableWidthRange" class="ios-range" type="range" min="520" max="1100" step="20" value="720" oninput="setTableWidth(this.value)">
+          <div class="ios-segmented" role="group" aria-label="Presets de largura das tabelas">
+            <button type="button" data-table-width="compact" onclick="setTableWidthPreset('compact')">Compacta</button>
+            <button type="button" data-table-width="standard" onclick="setTableWidthPreset('standard')">Padrão</button>
+            <button type="button" data-table-width="wide" onclick="setTableWidthPreset('wide')">Ampla</button>
+          </div>
+        </div>
+        <div class="ios-control-card">
+          <div class="ios-control-head"><div><strong>Densidade das tabelas</strong><div class="muted">Controla altura das linhas e quantidade de informação visível.</div></div></div>
+          <div class="ios-segmented" role="group" aria-label="Densidade das tabelas">
+            <button type="button" data-table-density="compact" onclick="setTableDensity('compact')">Compacta</button>
+            <button type="button" data-table-density="standard" onclick="setTableDensity('standard')">Padrão</button>
+            <button type="button" data-table-density="comfortable" onclick="setTableDensity('comfortable')">Confortável</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn primary small" type="button" onclick="saveDashboardAppearance()">✓ Salvar painel</button>
+        <button class="btn small" type="button" onclick="resetDashboardAppearance()">↺ Restaurar padrão</button>
+      </div>
+    </div>
+
+    <div class="card panel" style="margin-bottom:15px">
+      <div class="section-title">Paleta do Painel</div>
+      <div class="muted" style="font-size:11px;margin-bottom:10px">Escolha o gradiente do painel. A seleção é independente do tema geral e também funciona no modo escuro.</div>
+      <div class="dashboard-palette-grid">
+        <button type="button" class="dashboard-palette" data-dashboard-palette="violeta" onclick="applyDashboardPalette('violeta')"><span class="dp-swatch" style="background:linear-gradient(135deg,#241047,#7c3aed)"></span><strong>Violeta</strong></button>
+        <button type="button" class="dashboard-palette" data-dashboard-palette="rose" onclick="applyDashboardPalette('rose')"><span class="dp-swatch" style="background:linear-gradient(135deg,#3b102b,#ec4899)"></span><strong>Rose</strong></button>
+        <button type="button" class="dashboard-palette" data-dashboard-palette="oceano" onclick="applyDashboardPalette('oceano')"><span class="dp-swatch" style="background:linear-gradient(135deg,#06202b,#0891b2)"></span><strong>Oceano</strong></button>
+        <button type="button" class="dashboard-palette" data-dashboard-palette="menta" onclick="applyDashboardPalette('menta')"><span class="dp-swatch" style="background:linear-gradient(135deg,#06352d,#10b981)"></span><strong>Menta</strong></button>
+        <button type="button" class="dashboard-palette" data-dashboard-palette="dourado" onclick="applyDashboardPalette('dourado')"><span class="dp-swatch" style="background:linear-gradient(135deg,#3b2305,#f59e0b)"></span><strong>Dourado</strong></button>
+        <button type="button" class="dashboard-palette" data-dashboard-palette="grafite" onclick="applyDashboardPalette('grafite')"><span class="dp-swatch" style="background:linear-gradient(135deg,#111827,#64748b)"></span><strong>Grafite</strong></button>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="theme-toggle-pro">
+        <div>
+          <div class="theme-label" style="font-weight:800">Modo Escuro / Dark Mode</div>
+          <small id="themeModeLabel">Modo claro ativo</small>
+        </div>
+        <button id="themeTogglePro" class="switch-pro" type="button" onclick="toggleDarkModePro()"></button>
+      </div>
+
+      <div class="section-title" style="margin-top:4px">2 Paletas do Modo Escuro</div>
+      <div class="muted" style="font-size:11px;margin-bottom:6px">Escolha uma combinação específica para o modo escuro.</div>
+      <div class="dark-palette-grid" aria-label="Paletas do modo escuro">
+        <button type="button" class="dark-palette" data-dark-palette="ameixa" onclick="applyDarkPalette('ameixa')"><div class="dark-swatches"><span style="background:#11101a"></span><span style="background:#4c3a68"></span><span style="background:#8b6fb3"></span><span style="background:#d6c6ec"></span><span style="background:#f5f1fa"></span></div><strong>🌙 Ameixa</strong><small>Profunda, suave e sofisticada</small></button>
+        <button type="button" class="dark-palette" data-dark-palette="grafite" onclick="applyDarkPalette('grafite')"><div class="dark-swatches"><span style="background:#0d1117"></span><span style="background:#26313d"></span><span style="background:#536273"></span><span style="background:#9aa8b8"></span><span style="background:#e7edf3"></span></div><strong>⚫ Grafite</strong><small>Neutra, limpa e discreta</small></button>
+      </div>
+
+      <div class="section-title" style="margin-top:18px">4 Paletas do Modo Normal</div>
+      <div class="muted" style="font-size:11px;margin-bottom:6px">Quatro combinações claras, organizadas para leitura e contraste no estilo Liquid Glass.</div>
+      <div class="palette-grid-pro" aria-label="Paletas do modo normal">
+        <button type="button" class="palette-pro" data-palette="lavanda" onclick="applyProfessionalPalette('lavanda')"><div class="palette-swatches"><span style="background:#f4f1fa"></span><span style="background:#ded5ee"></span><span style="background:#8b6fb3"></span><span style="background:#b9a0d4"></span><span style="background:#e8dff2"></span></div>💜 <strong>Lavanda</strong><small>Calma, elegante e contemporânea</small></button>
+        <button type="button" class="palette-pro" data-palette="salvia" onclick="applyProfessionalPalette('salvia')"><div class="palette-swatches"><span style="background:#f1f5f1"></span><span style="background:#d7e2d5"></span><span style="background:#5f7f68"></span><span style="background:#9bb7a0"></span><span style="background:#e5eee5"></span></div>🌿 <strong>Sálvia</strong><small>Natural, clínica e acolhedora</small></button>
+        <button type="button" class="palette-pro" data-palette="oceano" onclick="applyProfessionalPalette('oceano')"><div class="palette-swatches"><span style="background:#eef6fa"></span><span style="background:#d4e8f0"></span><span style="background:#347c99"></span><span style="background:#71b3ca"></span><span style="background:#dceef4"></span></div>🌊 <strong>Oceano</strong><small>Fresca, leve e profissional</small></button>
+        <button type="button" class="palette-pro" data-palette="rosegold" onclick="applyProfessionalPalette('rosegold')"><div class="palette-swatches"><span style="background:#faf3f5"></span><span style="background:#efdce2"></span><span style="background:#ad647c"></span><span style="background:#d69aaa"></span><span style="background:#f3e5e9"></span></div>🌸 <strong>Rose Gold</strong><small>Delicada, premium e harmoniosa</small></button>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="settings-section" id="settings-backup">
+    <div class="card panel">
+      <div class="section-title">Dados e Segurança</div>
+      <p class="muted">Os dados são armazenados localmente no navegador. O sistema mantém uma cópia automática de segurança da versão anterior e permite criar cópias manuais adicionais.</p>
+      <div class="storage-status" style="margin:15px 0">
+        <span class="storage-dot" id="backupStorageDot"></span>
+        <span id="backupStorageText">Banco de dados local protegido</span>
+      </div>
+      <input type="file" id="importFile" accept=".json" hidden onchange="importData(event)">
+      <div class="actions">
+        <button class="btn primary" onclick="exportData()">⬇ Exportar Backup JSON</button>
+        <button class="btn" onclick="document.getElementById('importFile').click()">⬆ Importar JSON</button>
+        <button class="btn" onclick="exportBackupPDF()">📄 Gerar PDF Dinâmico</button>
+        <button class="btn" onclick="exportBackupCSV()">📊 Exportar CSV Detalhado</button>
+        <button class="btn" onclick="createManualBackup()">🛡 Criar Cópia de Segurança Local</button>
+        <button class="btn" onclick="restoreLastLocalBackup()">↩ Restaurar Última Cópia</button>
+        <button class="btn danger icon ios-delete-button" onclick="deleteAllLocalBackups()" title="Excluir todas as cópias locais" aria-label="Excluir todas as cópias locais">${trashIcon(17)}</button>
+        <button class="btn danger" onclick="resetData()">⚠ Restaurar Dados de Fábrica</button>
+      </div>
+      <div class="card panel" style="margin-top:14px;background:var(--surface-2)">
+        <div class="panel-head"><div><div class="panel-title">Relatórios e dados para análise</div><div class="muted">PDF com gráficos, indicadores e explicações; CSV organizado para planilhas. O backup JSON continua sendo o formato para restauração.</div></div></div>
+        <div class="grid grid-4" style="margin-top:10px">
+          <div class="v9-backup-card"><div class="label">PDF</div><div class="value" style="font-size:13px">Visão gerencial + gráficos</div></div>
+          <div class="v9-backup-card"><div class="label">CSV</div><div class="value" style="font-size:13px">Dados detalhados</div></div>
+          <div class="v9-backup-card"><div class="label">JSON</div><div class="value" style="font-size:13px">Restauração completa</div></div>
+          <div class="v9-backup-card"><div class="label">Atualização</div><div class="value" style="font-size:13px">Dados do momento</div></div>
+        </div>
+      </div>
+      <div class="v9-backup-grid">
+        <div class="v9-backup-card"><div class="label">Último backup local</div><div class="value" id="v9LastBackup">—</div></div>
+        <div class="v9-backup-card"><div class="label">Cópias locais</div><div class="value" id="v9BackupCount">0</div></div>
+        <div class="v9-backup-card"><div class="label">Integridade</div><div class="value" id="v9BackupIntegrity">Protegida</div></div>
+        <div class="v9-backup-card"><div class="label">Banco atual</div><div class="value" id="v9CurrentDBSize">—</div></div>
+      </div>
+      <div class="card panel" style="margin-top:14px;background:var(--surface-2)">
+        <div class="panel-head">
+          <div><div class="panel-title">Diagnóstico do banco</div><div class="muted">Verificação rápida da estrutura e do armazenamento local.</div></div>
+          <button class="btn small" type="button" onclick="runDatabaseDiagnostics()">↻ Verificar agora</button>
+        </div>
+        <div class="v9-backup-grid" style="margin-top:10px">
+          <div class="v9-backup-card"><div class="label">Estrutura</div><div class="value" id="dbDiagStructure">—</div></div>
+          <div class="v9-backup-card"><div class="label">Registros</div><div class="value" id="dbDiagRecords">—</div></div>
+          <div class="v9-backup-card"><div class="label">Armazenamento</div><div class="value" id="dbDiagStorage">—</div></div>
+          <div class="v9-backup-card"><div class="label">Última verificação</div><div class="value" id="dbDiagTime">—</div></div>
+        </div>
+      </div>
+      <div id="v9BackupHistory" style="margin-top:15px"></div>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+</div>
+
+<!-- v83 — sistema de preferências Apple-style integrado e validado -->
+<!-- MODAL CONTAINER -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Formulário</div>
+      <button class="btn icon" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot" id="modalFoot">
+      <button class="btn" onclick="closeModal()">Cancelar</button>
+      <button class="btn primary" id="modalSave">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+
+
+
+
+<nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Navegação rápida">
+  <button data-page="dashboard"><span class="ios-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.8l8.5 6.7v9.2a1.8 1.8 0 0 1-1.8 1.8H5.3a1.8 1.8 0 0 1-1.8-1.8z"/><path d="M9 21.5v-6.2h6v6.2"/></svg></span><b>Início</b></button>
+  <button data-page="students"><span class="ios-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c.5-4 2.4-6 5.5-6s5 2 5.5 6"/><path d="M15.5 5.5a3 3 0 0 1 0 5.8M16 14c2.5.5 4 2.5 4.5 6"/></svg></span><b>Alunos</b></button>
+  <button data-page="agenda"><span class="ios-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="3"/><path d="M7.5 3.5v4M16.5 3.5v4M3.5 10h17"/><path d="M8 14h3M13 14h3M8 17.5h3"/></svg></span><b>Agenda</b></button>
+  <button data-page="finance"><span class="ios-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="3"/><path d="M7 9h10M7 13h4M7 16h6"/></svg></span><b>Financeiro</b></button>
+  <button data-page="settings" class="more-nav-button"><span class="ios-tab-icon ios-more-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></span><b>Mais</b></button>
+</nav>
+
+
+
+
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+</style>
+
+
+
+
+<!-- APPLE-STYLE REDESIGN — V90
+     Redesign visual completo inspirado em interfaces Apple modernas.
+     Não utiliza assets proprietários da Apple. -->
+
+
+
+
+
+
